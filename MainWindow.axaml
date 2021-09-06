@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="320"
+        Width="480"
+        Height="320"
+        x:Class="AvaloniaScrollToSelected.MainWindow"
+        Title="AvaloniaScrollToSelected">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top">Type a number and press Go To</TextBlock>
+        <Grid ColumnDefinitions="*,Auto" DockPanel.Dock="Top">
+            <TextBox Text="{Binding CurrentText}" />
+            <Button Command="{Binding GoTo}" Content="Go to" Grid.Column="1" />
+        </Grid>
+        <DockPanel Grid.IsSharedSizeScope="True">
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="A" Width="50" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition SharedSizeGroup="B" Width="100" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0">Id</TextBlock>
+                <GridSplitter Grid.Column="1" />
+                <TextBlock Grid.Column="2">Text</TextBlock>
+            </Grid>
+            <ListBox SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+                     AutoScrollToSelectedItem="True"
+                     Items="{Binding List}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="A" />
+                                <ColumnDefinition SharedSizeGroup="B" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding}" />
+                            <TextBlock Grid.Column="1">abc</TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+    </DockPanel>
+</Window>
